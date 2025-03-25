@@ -1,6 +1,6 @@
 # Slot Machine
 
-Test Task: A slot machine game with keyboard and mouse controls.
+Test Task: An application that emulates the spinning drums of a slot machine.
 
 [Русская версия](README_RU.md)
 
