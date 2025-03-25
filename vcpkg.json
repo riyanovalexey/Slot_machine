@@ -1,0 +1,8 @@
+{
+  "name": "slot-machine",
+  "version": "1.0.0",
+  "dependencies": [
+    "sfml"
+  ],
+  "builtin-baseline": "608d1dbcd6969679f82b1ca6b89d58939c9b228e"
+} 
