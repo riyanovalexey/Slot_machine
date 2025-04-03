@@ -22,7 +22,13 @@ public:
 protected:
     void triggerEvent(EventType event);
     
+    StateMachine* m_stateMachine = nullptr;
+};
+
+class SlotMachineState : public State {
+public:
     SlotMachine* getSlotMachine() const;
     
-    StateMachine* m_stateMachine = nullptr;
+protected:
+    SlotMachine* m_slotMachine = nullptr;
 }; 

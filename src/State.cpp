@@ -8,7 +8,7 @@ void State::triggerEvent(EventType event) {
     }
 }
 
-SlotMachine* State::getSlotMachine() const {
+SlotMachine* SlotMachineState::getSlotMachine() const {
     if (m_stateMachine) {
         return m_stateMachine->getSlotMachine();
     }

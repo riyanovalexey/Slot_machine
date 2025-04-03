@@ -5,17 +5,14 @@
 #include "SlotMachine.h"
 #include <vector>
 
-class WaitingForActionState : public State {
+class WaitingForActionState : public SlotMachineState {
 public:
     void enter() override;
     void update(float deltaTime) override;
     void exit() override;
-
-private:
-    SlotMachine* m_slotMachine = nullptr;
 };
 
-class ReelsSpinningState : public State {
+class ReelsSpinningState : public SlotMachineState {
 public:
     void enter() override;
     void update(float deltaTime) override;
@@ -23,10 +20,9 @@ public:
 
 private:
     float m_spinTimer = 0.0f;
-    SlotMachine* m_slotMachine = nullptr;
 };
 
-class ShowWinState : public State {
+class ShowWinState : public SlotMachineState {
 public:
     void enter() override;
     void update(float deltaTime) override;
@@ -35,5 +31,4 @@ public:
 private:
     float m_displayTimer = 0.0f;
     float m_winDisplayTime = 1.0f;
-    SlotMachine* m_slotMachine = nullptr;
 };
