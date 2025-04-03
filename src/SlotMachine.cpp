@@ -23,7 +23,7 @@ SlotMachine::SlotMachine()
         "Slot Machine",
         sf::Style::Default
     );
-    m_window->setFramerateLimit(60);
+    m_window->setFramerateLimit(GameConstants::DEFAULT_FPS_LIMIT);
 
     m_ui = std::make_unique<UI>(*m_window);
 }

@@ -73,7 +73,7 @@ void ReelsSpinningState::update(float deltaTime) {
             m_slotMachine->stopReelsAt(targetSymbols);
         }
     } else {
-        if (m_spinTimer > 0.5f) {
+        if (m_spinTimer > GameConstants::SPIN_RESULT_CHECK_DELAY) {
             auto actualResults = m_slotMachine->getVisibleReelSymbols();
             
             const auto& targetResults = m_slotMachine->getReelResults();

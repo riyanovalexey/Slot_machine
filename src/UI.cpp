@@ -178,7 +178,7 @@ void UI::updateAnimations(float deltaTime) {
             baseColor = UIConstants::NO_WIN_COLOR;
         }
         
-        float alpha = (std::sin(m_winAnimationTime * 5.f) + 1.f) / 2.f;
+        float alpha = (std::sin(m_winAnimationTime * AnimationConstants::WIN_ANIMATION_SPEED) + 1.f) / 2.f;
         baseColor.a = static_cast<uint8_t>(255 * alpha);
         m_winText->setFillColor(baseColor);
     }

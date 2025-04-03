@@ -15,7 +15,7 @@ Reel::Reel(int symbolCount)
     , m_isAccelerating(false)
     , m_currentSymbol(0)
     , m_targetSymbol(-1)
-    , m_symbolHeight(100.f)
+    , m_symbolHeight(ReelConstants::SYMBOL_HEIGHT)
     , m_deceleration(0.0f)
 {
 }
@@ -79,7 +79,9 @@ void Reel::calculateDecelerationToTarget() {
     
     float targetPosition = m_targetSymbol * m_symbolHeight;
     
-    int minRotations = 1 + (m_spinSpeed > 800.0f ? 1 : 0);
+    int minRotations = ReelConstants::MIN_ROTATIONS_BASE + 
+                       (m_spinSpeed > ReelConstants::HIGH_SPEED_THRESHOLD ? 
+                        ReelConstants::ADDITIONAL_ROTATION_FOR_HIGH_SPEED : 0);
     float baseDistance = minRotations * totalHeight;
     
     float directDistanceToTarget = targetPosition - currentPosition;
@@ -89,9 +91,10 @@ void Reel::calculateDecelerationToTarget() {
     
     float totalDistance = baseDistance + directDistanceToTarget;
     
+    // S = V²/2a, a = V²/2S
     m_deceleration = (m_spinSpeed * m_spinSpeed) / (2.0f * totalDistance);
     
-    float maxDeceleration = m_spinSpeed / 1.5f;
+    float maxDeceleration = m_spinSpeed / ReelConstants::MAX_DECELERATION_DIVIDER;
     m_deceleration = std::min(m_deceleration, maxDeceleration);
 }
 
@@ -121,7 +124,7 @@ void Reel::update(float deltaTime) {
     else if (m_targetSymbol >= 0) {
         m_spinSpeed = std::max(0.0f, m_spinSpeed - m_deceleration * deltaTime);
         
-        if (m_spinSpeed < 1.0f) {
+        if (m_spinSpeed < GameConstants::MIN_SPIN_SPEED_THRESHOLD) {
             m_isSpinning = false;
             m_spinSpeed = 0.0f;
             m_currentSymbol = m_targetSymbol;

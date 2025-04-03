@@ -175,7 +175,11 @@ void ReelSet::initReels() {
             symbols.push_back(std::make_unique<Symbol>(
                 i,
                 static_cast<Symbol::Type>(i % 5),
-                sf::Color(50 + i * 40, 100 + i * 30, 150 + i * 20)
+                sf::Color(
+                    SymbolConstants::COLOR_RED_BASE + i * SymbolConstants::COLOR_RED_INCREMENT, 
+                    SymbolConstants::COLOR_GREEN_BASE + i * SymbolConstants::COLOR_GREEN_INCREMENT, 
+                    SymbolConstants::COLOR_BLUE_BASE + i * SymbolConstants::COLOR_BLUE_INCREMENT
+                )
             ));
         }
         reel->initSymbols(std::move(symbols));

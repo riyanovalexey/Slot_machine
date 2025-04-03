@@ -21,6 +21,11 @@ namespace GameConstants {
     constexpr float AUTO_STOP_TIME = 5.0f;
     constexpr float WIN_DISPLAY_TIME = 3.0f;
     constexpr float NO_WIN_DISPLAY_TIME = 1.0f;
+    
+    constexpr int DEFAULT_FPS_LIMIT = 60;
+    constexpr float MIN_SPIN_SPEED_THRESHOLD = 1.0f;
+    
+    constexpr float SPIN_RESULT_CHECK_DELAY = 0.5f;
 }
 
 namespace ReelConstants {
@@ -35,6 +40,13 @@ namespace ReelConstants {
     constexpr float ACCELERATION_RATE = 1500.0f;
     constexpr float BASE_SPIN_SPEED = 1000.0f;
     constexpr float SPEED_VARIATION = 100.0f;
+    
+    constexpr float SYMBOL_HEIGHT = 100.0f;
+    constexpr float MAX_DECELERATION_DIVIDER = 1.5f;
+    constexpr float HIGH_SPEED_THRESHOLD = 800.0f;
+    
+    constexpr int MIN_ROTATIONS_BASE = 1;
+    constexpr int ADDITIONAL_ROTATION_FOR_HIGH_SPEED = 1;
 }
 
 namespace UIConstants {
@@ -75,4 +87,24 @@ namespace UIConstants {
     const sf::Color NO_WIN_COLOR(200, 200, 200);
     
     const sf::Color BACKGROUND_COLOR(50, 70, 100);
+}
+
+namespace SymbolConstants {
+    constexpr float SYMBOL_SIZE = 50.0f;
+    constexpr int STAR_POINTS = 5;
+    constexpr float STAR_INNER_RADIUS_RATIO = 0.25f;
+    constexpr float STAR_OUTER_RADIUS_RATIO = 0.5f;
+    
+    constexpr int COLOR_RED_BASE = 50;
+    constexpr int COLOR_RED_INCREMENT = 40;
+    constexpr int COLOR_GREEN_BASE = 100;
+    constexpr int COLOR_GREEN_INCREMENT = 30;
+    constexpr int COLOR_BLUE_BASE = 150;
+    constexpr int COLOR_BLUE_INCREMENT = 20;
+    
+    constexpr float PI = 3.14159265359f;
+}
+
+namespace AnimationConstants {
+    constexpr float WIN_ANIMATION_SPEED = 5.0f;
 } 

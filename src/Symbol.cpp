@@ -1,5 +1,6 @@
 #include "Symbol.h"
 #include <cmath>
+#include "GameConstants.h"
 
 Symbol::Symbol(int id, Type type, const sf::Color& color)
     : m_id(id)
@@ -24,7 +25,7 @@ void Symbol::setScale(const sf::Vector2f& scale) {
 }
 
 void Symbol::createShape(Type type, const sf::Color& color) {
-    const float size = 50.f;
+    const float size = SymbolConstants::SYMBOL_SIZE;
 
     switch (type) {
         case Type::Circle: {
@@ -60,17 +61,17 @@ void Symbol::createShape(Type type, const sf::Color& color) {
 }
 
 void Symbol::createStar() {
-    const float size = 50.f;
-    const int points = 5;
-    const float innerRadius = size / 4;
-    const float outerRadius = size / 2;
+    const float size = SymbolConstants::SYMBOL_SIZE;
+    const int points = SymbolConstants::STAR_POINTS;
+    const float innerRadius = size * SymbolConstants::STAR_INNER_RADIUS_RATIO;
+    const float outerRadius = size * SymbolConstants::STAR_OUTER_RADIUS_RATIO;
 
     auto star = std::make_unique<sf::ConvexShape>();
     star->setPointCount(points * 2);
 
     for (int i = 0; i < points * 2; ++i) {
         float radius = (i % 2 == 0) ? outerRadius : innerRadius;
-        float angle = i * 3.14159265359 / points;
+        float angle = i * SymbolConstants::PI / points;
         float x = std::cos(angle) * radius;
         float y = std::sin(angle) * radius;
         star->setPoint(i, sf::Vector2f(x + outerRadius, y + outerRadius));
@@ -81,7 +82,7 @@ void Symbol::createStar() {
 }
 
 void Symbol::createDiamond() {
-    const float size = 50.f;
+    const float size = SymbolConstants::SYMBOL_SIZE;
     
     auto diamond = std::make_unique<sf::ConvexShape>();
     diamond->setPointCount(4);
