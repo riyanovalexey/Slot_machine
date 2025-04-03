@@ -13,10 +13,6 @@ class ShowWinState;
 
 class SlotMachine {
 public:
-    friend class WaitingForActionState;
-    friend class ReelsSpinningState;
-    friend class ShowWinState;
-
     SlotMachine();
     ~SlotMachine();
 
