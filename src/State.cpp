@@ -1,6 +1,7 @@
 #include "State.h"
 #include "StateMachine.h"
 #include "SlotMachine.h"
+#include "GameTypes.h"
 
 void State::triggerEvent(EventType event) {
     if (m_stateMachine) {

@@ -1,5 +1,4 @@
 #pragma once
-#include "GameTypes.h"
 
 class StateMachine;
 enum class EventType;
