@@ -2,6 +2,7 @@
 #include "States.h"
 #include "StateMachine.h"
 #include <stdexcept>
+#include <iostream>
 
 State* StateFactory::getState(StateType type) {
     auto it = m_states.find(type);
@@ -10,6 +11,10 @@ State* StateFactory::getState(StateType type) {
     }
 
     auto newState = createState(type);
+    if (!newState) {
+        return nullptr;
+    }
+    
     State* statePtr = newState.get();
     
     if (m_stateMachine) {
@@ -41,6 +46,7 @@ std::unique_ptr<State> StateFactory::createState(StateType type) {
             return std::make_unique<ShowWinState>();
             
         default:
-            throw std::runtime_error("Unknown state type");
+            std::cerr << "Error: Unknown state type" << std::endl;
+            return nullptr;
     }
 } 

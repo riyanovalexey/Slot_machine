@@ -156,14 +156,16 @@ std::vector<int> ReelSet::getVisibleSymbols() const {
 
 Reel& ReelSet::getReel(int index) {
     if (index < 0 || index >= static_cast<int>(m_reels.size())) {
-        throw std::out_of_range("Reel index out of range");
+        std::cerr << "Error: Reel index out of range, using first reel instead" << std::endl;
+        return *m_reels[0];
     }
     return *m_reels[index];
 }
 
 const Reel& ReelSet::getReel(int index) const {
     if (index < 0 || index >= static_cast<int>(m_reels.size())) {
-        throw std::out_of_range("Reel index out of range");
+        std::cerr << "Error: Reel index out of range, using first reel instead" << std::endl;
+        return *m_reels[0];
     }
     return *m_reels[index];
 }

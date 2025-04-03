@@ -39,7 +39,8 @@ void StateMachine::update(float deltaTime) {
 
 void StateMachine::processEvent(EventType event) {
     if (!m_currentState) {
-        throw std::runtime_error("No current state set");
+        std::cerr << "Error: No current state set" << std::endl;
+        return;
     }
 
     int key = getTransitionKey(m_currentStateType, event);
@@ -60,10 +61,16 @@ void StateMachine::changeState(StateType newStateType) {
     m_currentStateType = newStateType;
     m_currentState = m_stateFactory.getState(newStateType);
 
-    if (m_currentState) {
-        m_currentState->enter();
+    if (!m_currentState) {
+        std::cerr << "Error: Failed to create new state" << std::endl;
+        m_currentStateType = StateType::WaitingForAction;
+        m_currentState = m_stateFactory.getState(m_currentStateType);
+        
+        if (!m_currentState) {
+            std::cerr << "Critical Error: Cannot recover to safe state" << std::endl;
+        }
     } else {
-        throw std::runtime_error("Failed to create new state");
+        m_currentState->enter();
     }
 }
 
