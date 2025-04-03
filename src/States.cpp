@@ -1,7 +1,6 @@
 #include "States.h"
 #include "SlotMachine.h"
 #include <iostream>
-#include <random>
 #include <thread>
 #include "GameConstants.h"
 

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <random>
 
 SlotMachine::SlotMachine()
     : m_playerBalance(GameConstants::DEFAULT_BALANCE)
@@ -12,9 +13,8 @@ SlotMachine::SlotMachine()
     , m_stopButtonPressed(false)
     , m_winAmount(0)
     , m_reelSet(GameConstants::REEL_COUNT, GameConstants::SYMBOLS_PER_REEL)
+    , m_rng(std::random_device{}())
 {
-    std::srand(static_cast<unsigned int>(std::time(nullptr)));
-    
     m_reelResults.resize(GameConstants::REEL_COUNT, 0);
     
     sf::VideoMode videoMode(sf::Vector2u(GameConstants::WINDOW_WIDTH, GameConstants::WINDOW_HEIGHT));
@@ -154,8 +154,10 @@ std::vector<int> SlotMachine::generateRandomResult() const {
     std::vector<int> results;
     results.resize(GameConstants::REEL_COUNT);
     
+    std::uniform_int_distribution<int> distribution(0, GameConstants::SYMBOLS_PER_REEL - 1);
+    
     for (int i = 0; i < GameConstants::REEL_COUNT; ++i) {
-        results[i] = std::rand() % GameConstants::SYMBOLS_PER_REEL;
+        results[i] = distribution(m_rng);
     }
     
     return results;

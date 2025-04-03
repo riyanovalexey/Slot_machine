@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <random>
 
 class WaitingForActionState;
 class ReelsSpinningState;
@@ -75,4 +76,6 @@ private:
     bool m_stopButtonPressed;
     std::vector<int> m_reelResults;
     int m_winAmount;
+    
+    mutable std::mt19937 m_rng;
 }; 
